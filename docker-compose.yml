@@ -1,0 +1,33 @@
+# Example: app + PostgreSQL. Use: docker compose up --build
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: voice_ver_sign
+      POSTGRES_PASSWORD: voice_ver_sign
+      POSTGRES_DB: voice_ver_sign
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U voice_ver_sign -d voice_ver_sign"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+psycopg2://voice_ver_sign:voice_ver_sign@db:5432/voice_ver_sign
+      CORS_ORIGINS: "*"
+      # Set a strong secret in real deployments:
+      # VVS_SECRET: ...
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

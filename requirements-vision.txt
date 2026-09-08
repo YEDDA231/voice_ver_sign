@@ -1,0 +1,4 @@
+# Optional extras for local vision. Core app already includes numpy + opencv-python-headless
+# in requirements.txt for live FSL-105 / Collated matching.
+numpy>=2.0
+opencv-python-headless>=4.10

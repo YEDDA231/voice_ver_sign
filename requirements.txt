@@ -1,0 +1,16 @@
+# Pin versions for reproducible deploys — install inside a venv (see README).
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+sqlalchemy==2.0.36
+pydantic==2.10.3
+python-dotenv==1.0.1
+
+# MySQL 8.0 (XAMPP / Workbench) — use DATABASE_URL=mysql+pymysql://...
+pymysql==1.1.1
+# Used by Starlette/FastAPI TestClient and many integration tests
+httpx==0.28.1
+
+# Live sign recognition (Collated images + FSL-105 video frames)
+numpy>=2.0
+opencv-python-headless==4.11.0.86
+

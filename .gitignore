@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Local / IDE
+.local/
+.idea/
+.vscode/
+*.log
+desktop.ini
+
+# OS
+Thumbs.db
+.DS_Store
+
+# App data (SQLite etc.)
+data/
+*.db
+*.sqlite3
+
+# Env (never commit secrets)
+.env
+.env.local
+.env.production
+!.env.example
+
+# ML Models
+models/
+
+# Debug captures (local testing only)
+debug_*.png
