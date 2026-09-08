@@ -1,0 +1,193 @@
+/* ── User Sidebar Footer & Dropdown Menu ── */
+.sidebar-user-footer {
+    padding: 12px;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+    position: relative;
+    background: var(--bg-sidebar);
+}
+
+.user-profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-align: left;
+    color: var(--text-primary);
+    transition: background var(--transition);
+}
+
+.user-profile-btn:hover {
+    background: var(--bg-hover);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--success); /* Or var(--accent) */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    justify-content: center;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+}
+
+.user-plan {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.2;
+    margin-top: 2px;
+}
+
+.user-upgrade-badge {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+    pointer-events: none;
+}
+
+/* User Dropdown Menu */
+.user-dropdown-menu {
+    position: absolute;
+    bottom: 100%;
+    left: 12px;
+    width: calc(100% - 24px);
+    margin-bottom: 8px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 8px 0;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.user-dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-header {
+    padding: 8px 16px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+}
+
+.dropdown-header .user-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+}
+
+.dropdown-user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.dropdown-user-email {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text-primary);
+    text-align: left;
+    transition: background 0.15s;
+}
+
+.dropdown-item:hover {
+    background: var(--bg-hover);
+}
+
+.dropdown-item svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-secondary);
+}
+
+.dropdown-item-arrow {
+    margin-left: auto;
+    color: var(--text-tertiary) !important;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 8px 0;
+}
+
+/* ── Global Smooth Animations & Transitions ── */
+.sidebar-nav-item, 
+.maxton-menu-item, 
+.user-profile-btn, 
+.dropdown-item, 
+.maxton-icon-btn,
+.btn-primary,
+.btn-secondary {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.sidebar-nav-item:hover, 
+.maxton-menu-item:hover {
+    transform: translateX(4px);
+}
+
+.maxton-icon-btn:hover {
+    transform: scale(1.08); /* slight pop effect */
+}

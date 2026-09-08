@@ -1,0 +1,725 @@
+/* 
+ * VoiceVerSign - Maxton Admin Dashboard Theme 
+ * Exact dark-theme replica of the provided dashboard reference.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --maxton-bg: var(--bg-primary, #f4f4f5);
+    --maxton-card: var(--bg-elevated, #ffffff);
+    --maxton-input: var(--bg-secondary, #eaeaf0);
+    --maxton-text-main: var(--text-primary, #1d1d23);
+    --maxton-text-muted: var(--text-secondary, #6b6b80);
+
+    --maxton-cyan: #06b6d4;
+    --maxton-pink: #ec4899;
+    --maxton-purple: #8b5cf6;
+    --maxton-green: #22c55e;
+    --maxton-yellow: #f59e0b;
+    --maxton-red: #ef4444;
+    --maxton-blue: #3b82f6;
+    --maxton-gray: #64748b;
+
+    --maxton-border: var(--border, #e5e5ea);
+    --maxton-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.06));
+    font-family: var(--font, 'Inter', sans-serif);
+}
+
+[data-theme="dark"] {
+    --maxton-bg: #14142f;
+    --maxton-card: #1c1d42;
+    --maxton-input: #151633;
+    --maxton-text-main: #f8fafc;
+    --maxton-text-muted: #94a3b8;
+    --maxton-border: rgba(255, 255, 255, 0.05);
+    --maxton-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--maxton-bg);
+    color: var(--maxton-text-main);
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ── LAYOUT ── */
+.maxton-sidebar {
+    width: 260px;
+    background-color: var(--maxton-bg);
+    border-right: 1px solid var(--maxton-border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    margin-left: 0;
+    transform: translateX(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.maxton-sidebar.collapsed {
+    margin-left: -260px;
+    transform: translateX(-100%);
+}
+
+/* On smaller screens, the sidebar floats above content and is hidden by default. If it has .collapsed, we hide it.
+Wait, if users open it, we should remove .collapsed. */
+
+.maxton-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px 24px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.admin-view {
+    animation: adminFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: top center;
+}
+
+@keyframes adminFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.maxton-topbar {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+/* ── SIDEBAR ── */
+.maxton-brand {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    font-size: 20px;
+    font-weight: 700;
+    gap: 12px;
+}
+
+.maxton-brand-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--maxton-cyan), var(--maxton-purple));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.maxton-menu {
+    padding: 12px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.maxton-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.maxton-menu-group {
+    margin-bottom: 24px;
+}
+
+.maxton-menu-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--maxton-text-muted);
+    letter-spacing: 0.5px;
+    margin: 0 12px 8px;
+    font-weight: 600;
+}
+
+.maxton-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: var(--maxton-text-muted);
+    font-size: 14px;
+    gap: 12px;
+    transition: all 0.2s;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.maxton-menu-item:hover,
+.maxton-menu-item.active {
+    background-color: var(--maxton-card);
+    color: var(--maxton-text-main);
+}
+
+.maxton-menu-item.active {
+    background-color: rgba(34, 211, 238, 0.12);
+    color: var(--maxton-cyan);
+}
+
+.maxton-menu-item svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+}
+
+/* ── TOPBAR ── */
+.maxton-search {
+    flex-grow: 1;
+    max-width: 400px;
+    position: relative;
+    margin-left: 16px;
+}
+
+.maxton-search input {
+    width: 100%;
+    background-color: var(--maxton-input);
+    border: 1px solid var(--maxton-border);
+    color: var(--maxton-text-main);
+    padding: 10px 16px 10px 40px;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+}
+
+.maxton-search svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--maxton-text-muted);
+}
+
+.maxton-top-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.maxton-icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--maxton-text-muted);
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 50%;
+}
+
+.maxton-icon-btn:hover {
+    background-color: var(--maxton-card);
+    color: var(--maxton-text-main);
+}
+
+.maxton-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background-color: var(--maxton-red);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--maxton-bg);
+}
+
+.maxton-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--maxton-card);
+}
+
+/* ── GRID SYSTEM ── */
+.maxton-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+}
+
+#dashboardGrid {
+    min-height: 95vh;
+    height: auto;
+    grid-template-rows: auto 1fr 1fr;
+    grid-auto-flow: dense;
+}
+
+#analyticsView {
+    min-height: 95vh;
+    height: auto;
+    grid-template-rows: 1fr 1fr;
+    grid-auto-flow: dense;
+}
+
+#dashboardGrid .card-monthly-revenue .chart-container-md,
+#dashboardGrid .card-device-type .chart-container-md,
+#analyticsView .chart-container-sm,
+#analyticsView .chart-container-md {
+    flex: 1;
+    min-height: 200px;
+}
+
+.maxton-card {
+    background-color: var(--maxton-card);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--maxton-shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.maxton-breadcrumbs {
+    font-size: 13px;
+    color: var(--maxton-text-muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.maxton-breadcrumbs span {
+    color: var(--maxton-text-main);
+    font-weight: 500;
+}
+
+.maxton-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.maxton-card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--maxton-text-main);
+    margin: 0;
+}
+
+/* Specific Card Placements in Bento Grid */
+.card-welcome {
+    grid-column: span 8;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-active-users {
+    grid-column: span 4;
+}
+
+.card-total-users {
+    grid-column: span 4;
+}
+
+.card-monthly-revenue {
+    grid-column: span 8;
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-device-type {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-clicks {
+    grid-column: span 4;
+}
+
+.card-views {
+    grid-column: span 4;
+}
+
+.card-accounts {
+    grid-column: span 6;
+}
+
+.card-campaigns {
+    grid-column: span 6;
+}
+
+.card-social {
+    grid-column: span 4;
+}
+
+/* Push feedback to bottom right corner */
+.card-feedbacks {
+    grid-column: span 8;
+}
+
+/* ── WELCOME BANNER ── */
+.welcome-info {
+    z-index: 2;
+}
+
+.welcome-greeting {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.welcome-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 3px solid var(--maxton-cyan);
+}
+
+.welcome-greeting h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.welcome-greeting p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: var(--maxton-text-muted);
+}
+
+.welcome-stats {
+    display: flex;
+    gap: 32px;
+}
+
+.w-stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.w-stat-label {
+    font-size: 13px;
+    color: var(--maxton-text-muted);
+}
+
+.w-stat-bar {
+    height: 4px;
+    width: 60px;
+    background: var(--maxton-input);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.w-stat-bar div {
+    height: 100%;
+    background: linear-gradient(90deg, var(--maxton-green), var(--maxton-cyan));
+    width: 70%;
+}
+
+.w-stat-bar.pink div {
+    background: linear-gradient(90deg, var(--maxton-pink), var(--maxton-yellow));
+    width: 80%;
+}
+
+.welcome-illustration {
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    height: 120%;
+    z-index: 1;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+/* ── WIDGET TYPOGRAPHY ── */
+.stat-large {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0 0 4px;
+}
+
+.stat-desc {
+    font-size: 12px;
+    color: var(--maxton-text-muted);
+}
+
+.stat-desc span {
+    color: var(--maxton-green);
+    font-weight: 600;
+}
+
+.stat-desc span.down {
+    color: var(--maxton-red);
+}
+
+.chart-container-sm {
+    height: 120px;
+    width: 100%;
+    margin-top: auto;
+    position: relative;
+}
+
+.chart-container-md {
+    height: 220px;
+    width: 100%;
+    position: relative;
+    margin-top: 16px;
+}
+
+/* Device Type Legend Additions */
+.device-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: auto;
+}
+
+.device-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--maxton-text-muted);
+    width: 40%;
+}
+
+.device-item::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--maxton-cyan);
+}
+
+.device-item:nth-child(2)::before {
+    background: var(--maxton-pink);
+}
+
+.device-item:nth-child(3)::before {
+    background: var(--maxton-green);
+}
+
+.device-item span {
+    margin-left: auto;
+    color: var(--maxton-text-main);
+}
+
+/* Lists */
+.maxton-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.maxton-list li {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--maxton-border);
+}
+
+.maxton-list li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.list-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--maxton-input);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    color: var(--maxton-text-main);
+}
+
+.list-icon.bg-pink {
+    background: rgba(236, 72, 153, 0.2);
+    color: var(--maxton-pink);
+}
+
+.list-icon.bg-blue {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+}
+
+.list-icon.bg-green {
+    background: rgba(34, 197, 94, 0.2);
+    color: var(--maxton-green);
+}
+
+.list-text {
+    flex-grow: 1;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.list-value {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.list-sub {
+    color: var(--maxton-green);
+    font-size: 13px;
+    margin-left: 8px;
+}
+
+/* Center Doughnut Label */
+.doughnut-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.doughnut-label h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.doughnut-label p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: var(--maxton-text-muted);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .card-welcome {
+        grid-column: span 12;
+    }
+
+    .card-active-users {
+        grid-column: span 6;
+    }
+
+    .card-total-users {
+        grid-column: span 6;
+    }
+
+    .card-monthly-revenue {
+        grid-column: span 12;
+    }
+
+    .card-device-type {
+        grid-column: span 6;
+    }
+
+    .card-clicks {
+        grid-column: span 6;
+    }
+
+    .card-views {
+        grid-column: span 6;
+    }
+
+    .card-accounts {
+        grid-column: span 12;
+    }
+
+    .card-campaigns {
+        grid-column: span 12;
+    }
+
+    .card-social {
+        grid-column: span 12;
+    }
+
+    .card-feedbacks {
+        grid-column: span 12;
+    }
+}
+
+@media (max-width: 1024px) {
+    .maxton-sidebar {
+        position: fixed;
+        z-index: 999;
+        margin-left: -260px;
+        /* hidden by default on tablet/mobile */
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .maxton-sidebar:not(.collapsed) {
+        margin-left: 0;
+    }
+
+    .card-welcome {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome-illustration {
+        opacity: 0.1;
+    }
+}
+
+@media (max-width: 600px) {
+    .maxton-grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .maxton-top-actions .maxton-search {
+        display: none;
+        /* Hide topbar search on very small screens to save space */
+    }
+}
+
+/* ── ISOLATED VIEWS EXPANSION ── */
+.admin-view .maxton-card[style*="span 12"] {
+    min-height: calc(100vh - 150px);
+}
+
+.admin-view .maxton-card[style*="span 12"] .chart-container-sm,
+.admin-view .maxton-card[style*="span 12"] .chart-container-md {
+    flex: 1;
+    min-height: 200px;
+    position: relative;
+    height: auto !important;
+}
+
+.admin-view .maxton-card[style*="span 12"] canvas {
+    height: 100% !important;
+}
+
+/* Feedbacks card expand to fill */
+#feedbacksView .card-feedbacks {
+    min-height: calc(100vh - 150px);
+}

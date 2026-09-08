@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceVerSign - Create Account</title>
+    <meta name="description" content="Create your VoiceVerSign account and start translating speech to sign language.">
+    <meta name="theme-color" content="#0d0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f4f4f5" media="(prefers-color-scheme: light)">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(self), camera=(self), payment=(), usb=()">
+    <link rel="icon" type="image/png" href="images/transparent-logo.svg">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="auth-page">
+    <a class="skip-link" href="#signupForm">Skip to signup form</a>
+    <div class="background-logos"
+        style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden;">
+        <img src="images/transparent-logo.svg"
+            style="position:absolute; width: 450px; opacity:0.04; animation: floatWide1 25s infinite alternate ease-in-out; top: 5%; left:-5%;"
+            alt="">
+    </div>
+
+    <header class="auth-header">
+        <a href="index.html" class="auth-logo">
+            <img src="images/transparent-logo.svg" alt="VoiceVerSign" onerror="this.style.display='none'">
+            <span class="auth-logo-text">VoiceVerSign</span>
+        </a>
+    </header>
+
+    <main class="auth-body" style="gap: 8vw; flex-wrap: wrap; padding: 24px 5vw;">
+
+        <div class="auth-intro"
+            style="position:relative; z-index:1; max-width: 480px; text-align: left; margin-bottom: 32px;">
+            <div
+                style="margin-bottom: 24px; display:inline-flex; align-items:center; gap:12px; padding: 8px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 30px; backdrop-filter: blur(10px);">
+                <span
+                    style="display:inline-block; width:8px; height:8px; background:#e0b694; border-radius:50%; box-shadow: 0 0 10px #e0b694;"></span>
+                <span
+                    style="font-size:13px; font-weight:600; color:rgba(255,255,255,0.9); letter-spacing:1px; text-transform:uppercase;">VoiceVerSign</span>
+            </div>
+            <h1
+                style="font-size: 56px; font-weight: 800; margin-bottom: 24px; line-height: 1.1; letter-spacing: -1.5px; color: white;">
+                Next-gen <br>
+                <span
+                    style="background: linear-gradient(135deg, #e0b694 0%, #b07d52 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AI
+                    translation</span>
+            </h1>
+            <p style="font-size: 18px; color: rgba(255,255,255,0.75); line-height: 1.6; font-weight: 400;">
+                Join VoiceVerSign and break communication barriers. Experience seamless, real-time speech to sign language
+                translation today.
+            </p>
+        </div>
+
+        <div class="auth-card" style="position:relative; z-index:1;">
+            <div class="auth-card-header">
+                <h1 class="auth-card-title">Create your account</h1>
+                <p class="auth-card-subtitle">Join VoiceVerSign and start translating instantly</p>
+            </div>
+
+            <form id="signupForm" onsubmit="handleSignup(event)" novalidate>
+                <div class="form-message" id="signupFormMessage" role="alert" aria-live="polite"></div>
+                <div class="name-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="firstName">First Name <span class="req" aria-hidden="true">*</span></label>
+                        <input class="form-input" id="firstName" name="firstName" type="text"
+                            placeholder="Jane" autocomplete="given-name" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lastName">Last Name <span class="req" aria-hidden="true">*</span></label>
+                        <input class="form-input" id="lastName" name="lastName" type="text"
+                            placeholder="Doe" autocomplete="family-name" required aria-required="true">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Email <span class="req" aria-hidden="true">*</span></label>
+                    <input class="form-input" id="email" name="email" type="email" placeholder="you@example.com"
+                        autocomplete="email" autocapitalize="none" spellcheck="false" required aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password <span class="req" aria-hidden="true">*</span></label>
+                    <div class="input-wrapper">
+                        <input class="form-input" id="password" name="password" type="password"
+                            placeholder="Create a password" autocomplete="new-password" minlength="8"
+                            required aria-required="true" aria-describedby="strengthText">
+                        <button type="button" class="input-icon" onclick="togglePasswordVisibility('password')"
+                            aria-label="Show password" aria-controls="password">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-bar" role="progressbar" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0">
+                            <div id="strengthFill" class="strength-fill"></div>
+                        </div>
+                        <div id="strengthText" class="strength-text">Use 8+ characters with mixed types</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="confirmPassword">Confirm Password <span class="req" aria-hidden="true">*</span></label>
+                    <div class="input-wrapper">
+                        <input class="form-input" id="confirmPassword" name="confirmPassword" type="password"
+                            placeholder="Confirm your password" autocomplete="new-password" required aria-required="true">
+                        <button type="button" class="input-icon" onclick="togglePasswordVisibility('confirmPassword')"
+                            aria-label="Show password" aria-controls="confirmPassword">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <span class="form-label" id="userTypeLabel">I primarily use VoiceVerSign as:</span>
+                    <div class="user-type-grid" role="radiogroup" aria-labelledby="userTypeLabel">
+                        <button type="button" class="user-type-btn active" data-type="hearing" role="radio"
+                            aria-checked="true" onclick="selectUserType('hearing')">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                            </svg>
+                            <span>Hearing User</span>
+                        </button>
+                        <button type="button" class="user-type-btn" data-type="deaf" role="radio" aria-checked="false"
+                            onclick="selectUserType('deaf')">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                            <span>Deaf User</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="checkbox-wrapper" style="margin-bottom: 20px;">
+                    <input type="checkbox" id="terms" name="terms" class="checkbox" required aria-required="true">
+                    <label for="terms" class="checkbox-label">I agree to the <a href="#" class="form-link">terms</a> and <a href="#" class="form-link">privacy policy</a></label>
+                </div>
+
+                <button type="submit" class="uiverse-btn">Create Account</button>
+            </form>
+
+            <div class="auth-switch">
+                Already have an account? <a href="login.html">Sign in</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+
+    <!-- ── BOTTOM-LEFT THEME SWITCH ── -->
+    <label class="theme-switch theme-switch--floating theme-toggle-control" title="Toggle theme"
+        aria-label="Toggle dark or light theme">
+        <input type="checkbox" class="theme-switch__input" onchange="toggleTheme(event)">
+        <span class="theme-switch__track">
+            <span class="theme-switch__indicator"></span>
+            <span class="theme-switch__knob">
+                <svg class="theme-switch__icon theme-switch__icon--sun" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                </svg>
+                <svg class="theme-switch__icon theme-switch__icon--moon" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </span>
+        </span>
+    </label>
+</body>
+
+</html>
